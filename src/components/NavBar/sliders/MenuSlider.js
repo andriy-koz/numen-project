@@ -1,32 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-
 import {myList} from "../Links";
 
-import {StyledSlider} from "./StyledSlider";
-
-const StyledMenu = styled(StyledSlider)`
-  div {
-    color: ${(props) => props.theme.color.tertiary};
-    display: grid;
-    gap: 20px;
-    a {
-      color: #fff;
-    }
-  }
-`;
+import {StyledMenu} from "./styles";
 
 const MenuSlider = (props) => {
   return (
-    <StyledMenu opened={props.opened}>
-      {/* ¿Por qué este div? */}
-      <div>
-        {myList.map((link, index) => (
-          <a key={index} href={link[1]}>
-            {link[0]}
-          </a>
-        ))}
-      </div>
+    <StyledMenu open={props.open}>
+      {myList.map((item, index) => (
+        <a key={index} href={item.id}>
+          {item.value}
+        </a>
+      ))}
     </StyledMenu>
   );
 };

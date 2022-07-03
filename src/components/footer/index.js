@@ -1,29 +1,33 @@
-import {Container, Wrapper, Row, Column, Link, Title} from "./styles/footer";
+import Title from "../Title";
+import faceIcon from "../../images/icons/facebook.png";
+import instaIcon from "../../images/icons/instagram.png";
+import twIcon from "../../images/icons/twitter.png";
+import whatsIcon from "../../images/icons/whatsapp.png";
 
-export default function Footer({children, ...restProps}) {
+import {Icon, IconsContainer, StyledFooter, Underline} from "./styles";
+
+const icons = [
+  {path: faceIcon, id: "facebook"},
+  {path: instaIcon, id: "instagram"},
+  {path: twIcon, id: "twitter"},
+  {path: whatsIcon, id: "whatsapp"},
+];
+
+const Footer = () => {
   return (
-    <Container id="footer" {...restProps}>
-      {children}
-    </Container>
+    <StyledFooter id="footer">
+      <div>
+        <Title invert text1="Contacto" text2="" />
+        <Underline />
+      </div>
+      <IconsContainer>
+        {icons.map((item, index) => (
+          <Icon key={index} alt={item.id} id={item.id} src={item.path} />
+        ))}
+      </IconsContainer>
+      <a href="#">@ Numen 2022</a>
+    </StyledFooter>
   );
-}
-
-Footer.Wrapper = function FooterWrapper({children, ...restProps}) {
-  return <Wrapper {...restProps}>{children}</Wrapper>;
 };
 
-Footer.Row = function FooterRow({children, ...restProps}) {
-  return <Row {...restProps}>{children}</Row>;
-};
-
-Footer.Column = function FooterColumn({children, ...restProps}) {
-  return <Column {...restProps}>{children}</Column>;
-};
-
-Footer.Link = function FooterLink({children, ...restProps}) {
-  return <Link {...restProps}>{children}</Link>;
-};
-
-Footer.Title = function FooterTitle({children, ...restProps}) {
-  return <Title {...restProps}>{children}</Title>;
-};
+export default Footer;

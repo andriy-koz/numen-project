@@ -1,4 +1,4 @@
-import {StyledInput} from "./Input.styled";
+import {StyledInput} from "./styles";
 
 const Input = (props) => {
   let errorMsg =
@@ -12,9 +12,9 @@ const Input = (props) => {
 
   return (
     <StyledInput hasError={props.hasError}>
-      <label htmlFor={props.id}>{props.label}</label>
       <input
         name={props.id}
+        placeholder={props.label}
         type={props.type}
         value={props.val}
         onBlur={() => props.onBlur(props.id)}

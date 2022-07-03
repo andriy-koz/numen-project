@@ -1,17 +1,24 @@
 {
-  "vinos": [
+  "wines": [
     {
         "id": 1,
-        "nombre": "Las Perdices, reserva Malbec.",
-        "precio": 1500.00,
-        "img": "https://i.ibb.co/xzzVRDG/las-perdices-reserva-malbec.png"
-        
+        "name": "Zodol Frizzante",
+        "price": 1500.00
     },
     {
         "id": 2,
-        "nombre": "Fabre Montmayour, reserva Malbec.",
-        "precio": 2300.00,
-        "img": "https://i.ibb.co/8xgms2T/fabre-montmayour-malbec.png"
+        "name": "Gegrube",
+        "price": 2300.00
+    },
+    {
+        "id": 3,
+        "name": "Lonvanis D'Or",
+        "price": 1200.00
+    },
+    {
+        "id": 4,
+        "name": "Grerronel Vendemmia",
+        "price": 2900.00
     }
 ]
 }

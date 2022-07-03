@@ -1,9 +1,10 @@
-import React, {useState, useEffect, useContext} from "react";
+import {useContext} from "react";
 
-import logo from "../../images/numen.png";
-import {ContadorContext} from "../../App";
+import {CounterContext} from "../../contexts/counter-context";
+import useIsMobile from "../../hooks/use-is-mobile";
+import useNavbarHandlers from "../../hooks/use-navbar-handlers";
 
-import {StyledNavBar, IconsContainer, StyledImg} from "./NavBar.styled";
+import {StyledNavBar, IconsContainer, StyledImg, NavContainer} from "./styles";
 import Links from "./Links";
 import SearchInput from "./SearchInput";
 import UserSlider from "./sliders/UserSlider";
@@ -11,62 +12,39 @@ import MenuSlider from "./sliders/MenuSlider";
 import CartSlider from "./sliders/CartSlider";
 import Button from "./Button";
 
-// No dejar espacios vacíos, aquí habia 3 renglones vacios
-
 const NavBar = () => {
-  // open es mejor que opened
-  const [openedMenu, setOpenedMenu] = useState(false);
-  const [openedUser, setOpenedUser] = useState(false);
-  const [openedSearch, setOpenedSearch] = useState(false);
-  const [openedCart, setOpenedCart] = useState(false);
+  const {
+    openMenu,
+    openUser,
+    openSearch,
+    openCart,
+    menuHandler,
+    userHandler,
+    searchHandler,
+    cartHandler,
+  } = useNavbarHandlers();
+  const isMobile = useIsMobile();
 
-  const {cont} = useContext(ContadorContext);
-
-  // En lugar del useEffect, podrían agregar esta lógica a los handlers, es más performante
-  useEffect(() => {
-    if (openedUser) {
-      setOpenedMenu(false);
-      setOpenedSearch(false);
-      setOpenedCart(false);
-    }
-    if (openedSearch) {
-      setOpenedUser(false);
-      setOpenedMenu(false);
-      setOpenedCart(false);
-    }
-    if (openedCart) {
-      setOpenedMenu(false);
-      setOpenedSearch(false);
-      setOpenedUser(false);
-    }
-  }, [openedUser, openedSearch]);
-
-  const menuHandler = () => {
-    setOpenedMenu((prevState) => !prevState);
-    setOpenedSearch(false);
-    setOpenedUser(false);
-    setOpenedCart(false);
-  };
-  const userHandler = () => setOpenedUser((prevState) => !prevState);
-  const searchHandler = () => setOpenedSearch((prevState) => !prevState);
-  const cartHandler = () => setOpenedCart((prevState) => !prevState);
+  const {count} = useContext(CounterContext);
 
   return (
     <StyledNavBar>
-      <StyledImg alt="Numen logo" src={logo} />
-      <Links counter={cont} onClick={cartHandler} />
-      {/* En lugar de ocultarlo con media queries, pueden renderizarlos condicionalmente
-        en base a ciertos parámetros. Por ejemplo, podrían crear un hook useIsMobile, o useWidth */}
-      <IconsContainer>
-        <SearchInput opened={openedSearch} />
-        <Button opened={openedSearch} type="search" onClick={searchHandler} />
-        <Button opened={openedUser} type="user" onClick={userHandler} />
-        <Button counter={cont} type="cart" onClick={cartHandler} />
-        <Button opened={openedMenu} type="menu" onClick={menuHandler} />
-      </IconsContainer>
-      <MenuSlider opened={openedMenu} />
-      <UserSlider opened={openedUser} />
-      <CartSlider counter={cont} opened={openedCart} />
+      <NavContainer>
+        <StyledImg href="#" />
+        {!isMobile && <Links counter={count} onClick={cartHandler} />}
+        {isMobile && (
+          <IconsContainer>
+            <SearchInput open={openSearch} />
+            <Button open={openSearch} type="search" onClick={searchHandler} />
+            <Button open={openUser} type="user" onClick={userHandler} />
+            <Button counter={count} type="cart" onClick={cartHandler} />
+            <Button open={openMenu} type="menu" onClick={menuHandler} />
+          </IconsContainer>
+        )}
+        <MenuSlider open={openMenu} />
+        <UserSlider open={openUser} />
+        <CartSlider counter={count} open={openCart} />
+      </NavContainer>
     </StyledNavBar>
   );
 };

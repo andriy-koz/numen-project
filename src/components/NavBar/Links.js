@@ -1,42 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-
 import Button from "./Button";
+import {StyledLinks} from "./styles";
 
 export const myList = [
-  // Un array de objetos es mejor que un array de arrays
-  ["NUESTROS VINOS", "#vinos"],
-  ["NUESTRAS BODEGAS", "#bodegas"],
-  ["MEMBRESÍA", "#form"],
-  ["CONTACTO", "#footer"],
+  {value: "NUESTROS VINOS", id: "#wines"},
+  {value: "NUESTRAS BODEGAS", id: "#warehouse"},
+  {value: "MEMBRESÍA", id: "#form"},
+  {value: "CONTACTO", id: "#footer"},
 ];
-
-const StyledLinks = styled.div`
-  margin: 15px 0 15px;
-  order: 3;
-  display: none;
-  list-style: none;
-  color: ${(props) => props.theme.color.tertiary};
-  a {
-    color: #fff;
-  }
-  a:hover {
-    cursor: pointer;
-    color: white;
-  }
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-`;
 
 const Links = (props) => {
   return (
     <StyledLinks>
-      {myList.map((link, index) => (
-        <a key={index} href={link[1]}>
-          {link[0]}
+      {myList.map((item, index) => (
+        <a key={index} href={item.id}>
+          {item.value}
         </a>
       ))}
       <Button counter={props.counter} type="cart" onClick={props.onClick} />
