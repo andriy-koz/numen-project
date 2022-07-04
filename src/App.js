@@ -17,7 +17,8 @@ import ModalCart from "./components/ModalCart";
 
 function App() {
   const {modalAgeHandler, modalAgeOpen} = useModalAge();
-  const {modalCartHandler, modalCartOpen, selectedWine} = useModalCart();
+  const {modalCartHandler, modalCartOpen, selectedWine, addWineHandler, cancelHandler} =
+    useModalCart();
   const [count, setCount] = useState(0);
 
   return (
@@ -31,7 +32,13 @@ function App() {
         <Form />
         <Footer />
         {modalAgeOpen && <ModalAge onConfirm={modalAgeHandler} />}
-        {modalCartOpen && <ModalCart selectedWine={selectedWine} />}
+        {modalCartOpen && (
+          <ModalCart
+            addWineHandler={addWineHandler}
+            cancelHandler={cancelHandler}
+            selectedWine={selectedWine}
+          />
+        )}
       </CounterContext.Provider>
     </ThemeProvider>
   );

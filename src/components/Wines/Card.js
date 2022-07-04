@@ -6,7 +6,7 @@ import Button from "../Button";
 
 import {StyledCard} from "./styles";
 
-const wines = [wine1, wine2, wine3, wine4];
+export const wines = [wine1, wine2, wine3, wine4];
 
 const Card = ({name, price, id, modalHandler}) => {
   return (
@@ -17,7 +17,7 @@ const Card = ({name, price, id, modalHandler}) => {
         <span>$</span>
         {price}
       </p>
-      <Button red onClick={() => modalHandler({name, price})}>
+      <Button red onClick={() => modalHandler({name, price, img: wines[id - 1]})}>
         Agregar
       </Button>
     </StyledCard>

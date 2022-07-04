@@ -22,7 +22,6 @@ export const StyledCard = styled.figure`
   }
   button {
     margin-top: 15px;
-    border-radius: 12px;
   }
   h3 {
     font-size: 20px;
