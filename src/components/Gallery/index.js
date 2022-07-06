@@ -2,18 +2,18 @@ import AliceCarousel from "react-alice-carousel";
 
 import "react-alice-carousel/lib/alice-carousel.css";
 import "./styles.css";
-import alpamanta from "../../images/alpamanta.jpg";
-import atamisque from "../../images/atamisque.jpg";
-import bianchi from "../../images/bianchi.jpg";
-import catenaZapata from "../../images/catenaZapata.jpg";
-import escorihuelaGascon from "../../images/escorihuelaGascon.jpg";
-import estanciaMendoza from "../../images/estanciaMendoza.jpg";
-import salentein from "../../images/salentein.jpg";
-import septimaVista from "../../images/septimaVista.jpg";
-import suter from "../../images/suter.jpg";
-import tierrasAltas from "../../images/tierrasAltas.jpg";
-import trivento from "../../images/trivento.jpg";
-import zuccardi from "../../images/zuccardi.jpg";
+import alpamanta from "../../images/alpamanta.webp";
+import atamisque from "../../images/atamisque.webp";
+import bianchi from "../../images/bianchi.webp";
+import catenaZapata from "../../images/catenaZapata.webp";
+import escorihuelaGascon from "../../images/escorihuelaGascon.webp";
+import estanciaMendoza from "../../images/estanciaMendoza.webp";
+import salentein from "../../images/salentein.webp";
+import septimaVista from "../../images/septimaVista.webp";
+import suter from "../../images/suter.webp";
+import tierrasAltas from "../../images/tierrasAltas.webp";
+import trivento from "../../images/trivento.webp";
+import zuccardi from "../../images/zuccardi.webp";
 import Title from "../Title";
 
 const handleDragStart = (e) => e.preventDefault();
@@ -34,7 +34,13 @@ const images = [
 ];
 
 const items = images.map((item, index) => (
-  <img key={index} alt={item.name} src={item.image} onDragStart={handleDragStart} />
+  <img
+    key={index}
+    alt={item.name}
+    className="lazyload"
+    data-src={item.image}
+    onDragStart={handleDragStart}
+  />
 ));
 
 const responsive = {

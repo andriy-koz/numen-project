@@ -1,4 +1,4 @@
-import img from "../../images/hero.jpg";
+import img from "../../images/hero.webp";
 import Button from "../Button";
 
 import {StyledOverlay, StyledHero, StyledText, ButtonsContainer} from "./styles";

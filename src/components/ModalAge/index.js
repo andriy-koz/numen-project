@@ -1,4 +1,4 @@
-import logo from "../../images/numen.png";
+import logo from "../../images/numen.webp";
 import {StyledBackdrop} from "../../global-styles/modal";
 
 import {StyledLogo, StyledMessage, StyledButton, StyledModalAge} from "./styles";

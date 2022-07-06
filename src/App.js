@@ -1,3 +1,4 @@
+import "lazysizes";
 import {ThemeProvider} from "styled-components";
 
 import useModalAge from "./hooks/use-modal-age";

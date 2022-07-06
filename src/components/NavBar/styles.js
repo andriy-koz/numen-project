@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import logo from "../../images/numen.png";
+import logo from "../../images/numen.webp";
 
 export const StyledInput = styled.input`
   font-family: ${(props) => props.theme.font}, sans-serif;

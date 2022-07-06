@@ -22,7 +22,7 @@ const Footer = () => {
       </div>
       <IconsContainer>
         {icons.map((item, index) => (
-          <Icon key={index} alt={item.id} id={item.id} src={item.path} />
+          <Icon key={index} alt={item.id} className="lazyload" data-src={item.path} id={item.id} />
         ))}
       </IconsContainer>
       <a href="#">@ Numen 2022</a>

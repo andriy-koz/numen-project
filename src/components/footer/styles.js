@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import instaHover from "../../images/icons/instagramHover.png";
+import instaHover from "../../images/icons/instagramHover.webp";
 import instaIcon from "../../images/icons/instagram.png";
 
 const faceFilter =
