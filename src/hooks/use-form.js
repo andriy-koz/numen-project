@@ -1,8 +1,10 @@
-import {useReducer, useCallback} from "react";
+import {useReducer, useState} from "react";
 
 const reducerFunction = (state, action) => {
   if (action.type === "ON_CHANGE") {
     let newState = {...state};
+
+    if (action.val) newState[action.id].hasError = false;
 
     newState[action.id].val = action.val;
 
@@ -12,6 +14,9 @@ const reducerFunction = (state, action) => {
     let newState = {...state};
 
     newState[action.id].touched = true;
+
+    if (newState[action.id].val) newState[action.id].hasError = false;
+    else newState[action.id].hasError = true;
 
     return newState;
   }
@@ -35,23 +40,23 @@ const formValidate = (state) => {
   return true;
 };
 
+const initialState = (ids) => {
+  const myState = {};
+
+  ids.forEach((id) => {
+    myState[id] = {
+      val: "",
+      touched: false,
+      hasError: false,
+    };
+  });
+
+  return myState;
+};
+
 const useForm = (inputIds) => {
-  // Sería mover mejor esta funcion fuera del custom hook
-  const initialState = useCallback((ids) => {
-    const myState = {};
-
-    ids.forEach((id) => {
-      myState[id] = {
-        val: "",
-        touched: false,
-        hasError: false,
-      };
-    });
-
-    return myState;
-  }, []);
-
   const [state, dispatch] = useReducer(reducerFunction, initialState(inputIds));
+  const [validForm, setValidForm] = useState(false);
 
   const onInputChange = (value, id) => {
     dispatch({type: "ON_CHANGE", val: value, id: id});
@@ -61,31 +66,14 @@ const useForm = (inputIds) => {
     dispatch({type: "ON_BLUR", id: id});
   };
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
+    await setValidForm(formValidate(state));
     if (!validForm) return;
     dispatch({type: "RESET"});
   };
 
-  // ¿Por qué usaron un for?
-  for (const key in state) {
-    if (!state[key].val && state[key].touched) {
-      let newState = {...state};
-
-      newState[key].hasError = true;
-    }
-    if (state[key].val) {
-      let newState = {...state};
-
-      newState[key].hasError = false;
-    }
-  }
-
-  // ¿Por qué una constante y no un estado?
-  const validForm = formValidate(state);
-
-  // Un objeto suele ser mejor que un array
-  return [state, onInputChange, onInputBlur, onFormSubmit, validForm];
+  return {state, onInputChange, onInputBlur, onFormSubmit};
 };
 
 export default useForm;

@@ -1,12 +1,11 @@
 import useForm from "../../hooks/use-form";
-import Button from "../Button";
 import Title from "../Title";
 
 import {InputLayoutDiv, LayoutDiv, StyledForm, FormContainer} from "./styles";
 import Input from "./Input";
 
 const Form = () => {
-  const [state, onInputChange, onInputBlur, onFormSubmit] = useForm(["name", "lastName", "email"]);
+  const {state, onInputChange, onInputBlur, onFormSubmit} = useForm(["name", "lastName", "email"]);
 
   return (
     <StyledForm id="form">
@@ -49,7 +48,7 @@ const Form = () => {
             onBlur={onInputBlur}
             onChange={onInputChange}
           />
-          <Button red>ENVIAR</Button>
+          <button>ENVIAR</button>
         </form>
       </FormContainer>
     </StyledForm>

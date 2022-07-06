@@ -28,16 +28,20 @@ export const StyledForm = styled.div`
   }
 
   button {
+    color: #fff;
     background-color: #826a45;
-    border-color: #826a45;
+    border: none;
+    padding: 10px 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 16px;
     @media (max-width: 572px) {
       width: 100%;
-      border-radius: 8px;
-      padding: 12px 0;
     }
   }
 
   button:hover {
+    cursor: pointer;
     filter: brightness(1.1);
   }
 `;
