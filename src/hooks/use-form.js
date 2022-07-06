@@ -66,14 +66,17 @@ const useForm = (inputIds) => {
     dispatch({type: "ON_BLUR", id: id});
   };
 
-  const onFormSubmit = async (e) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
-    await setValidForm(formValidate(state));
-    if (!validForm) return;
-    dispatch({type: "RESET"});
+    const formValidation = formValidate(state);
+
+    if (formValidation) {
+      setValidForm(formValidation);
+      dispatch({type: "RESET"});
+    } else return;
   };
 
-  return {state, onInputChange, onInputBlur, onFormSubmit};
+  return {state, onInputChange, onInputBlur, onFormSubmit, validForm};
 };
 
 export default useForm;
