@@ -5,7 +5,9 @@ import Card from "./Card";
 import {StyledWines, Grid} from "./styles";
 
 const Wines = ({modalHandler}) => {
-  const {data, isLoading, error} = useAxios("http://localhost:8000/wines");
+  const {data, isLoading, error} = useAxios(
+    "https://numen-project-default-rtdb.firebaseio.com/wines.json",
+  );
 
   const renderCards = data.map((item) => (
     <Card

@@ -15,16 +15,14 @@ const useAxios = (url) => {
       try {
         const res = await axios.get(url);
 
-        setData(res.data);
+        setData(Object.values(res.data));
       } catch (err) {
         setError({
           isError: true,
           message: err.message || "Hubo un error",
         });
       }
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1500);
+      setTimeout(() => setIsLoading(false), 500);
     };
 
     getData(url);

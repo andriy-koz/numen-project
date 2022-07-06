@@ -30,7 +30,7 @@ function App() {
       {modalAgeOpen && <ModalAge onConfirm={modalAgeHandler} />}
       {modalCartOpen && (
         <ModalCart
-          addWineHandler={addHandler}
+          addHandler={addHandler}
           cancelHandler={cancelHandler}
           selectedWine={selectedWine}
         />
