@@ -9,8 +9,10 @@ const Hero = () => {
       <StyledOverlay />
       <StyledText>Selección de vinos de las mejores bodegas de Mendoza</StyledText>
       <ButtonsContainer>
-        <Button red>Comprar</Button>
-        <Button>Saber mas</Button>
+        <Button red href="#wines">
+          Comprar
+        </Button>
+        <Button href="#warehouse">Saber mas</Button>
       </ButtonsContainer>
     </StyledHero>
   );

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.a`
   background: ${(props) => (props.red ? "#7e1b22" : "none")};
   color: #fff;
   z-index: 99;
@@ -8,6 +8,7 @@ export const StyledButton = styled.button`
   padding: 10px 20px;
   letter-spacing: 3px;
   text-transform: uppercase;
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     background-color: ${(props) => (props.red ? "#826a45" : "#fff")};
