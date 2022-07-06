@@ -1,6 +1,3 @@
-import {useContext} from "react";
-
-import {CounterContext} from "../../contexts/counter-context";
 import useIsMobile from "../../hooks/use-is-mobile";
 import useNavbarHandlers from "../../hooks/use-navbar-handlers";
 
@@ -12,7 +9,7 @@ import MenuSlider from "./sliders/MenuSlider";
 import CartSlider from "./sliders/CartSlider";
 import Button from "./Button";
 
-const NavBar = () => {
+const NavBar = ({counter}) => {
   const {
     openMenu,
     openUser,
@@ -25,25 +22,23 @@ const NavBar = () => {
   } = useNavbarHandlers();
   const isMobile = useIsMobile();
 
-  const {count} = useContext(CounterContext);
-
   return (
     <StyledNavBar>
       <NavContainer>
         <StyledImg href="#" />
-        {!isMobile && <Links counter={count} onClick={cartHandler} />}
+        {!isMobile && <Links counter={counter} onClick={cartHandler} />}
         {isMobile && (
           <IconsContainer>
             <SearchInput open={openSearch} />
             <Button open={openSearch} type="search" onClick={searchHandler} />
             <Button open={openUser} type="user" onClick={userHandler} />
-            <Button counter={count} type="cart" onClick={cartHandler} />
+            <Button counter={counter} type="cart" onClick={cartHandler} />
             <Button open={openMenu} type="menu" onClick={menuHandler} />
           </IconsContainer>
         )}
         <MenuSlider open={openMenu} />
         <UserSlider open={openUser} />
-        <CartSlider counter={count} open={openCart} />
+        <CartSlider counter={counter} open={openCart} />
       </NavContainer>
     </StyledNavBar>
   );

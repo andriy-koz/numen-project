@@ -1,11 +1,9 @@
-import {useState} from "react";
 import {ThemeProvider} from "styled-components";
 
 import useModalAge from "./hooks/use-modal-age";
 import useModalCart from "./hooks/use-modal-cart";
 import {theme} from "./theme/theme";
 import {GlobalStyles} from "./global-styles";
-import {CounterContext} from "./contexts/counter-context";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import Wines from "./components/Wines";
@@ -17,29 +15,26 @@ import ModalCart from "./components/ModalCart";
 
 function App() {
   const {modalAgeHandler, modalAgeOpen} = useModalAge();
-  const {modalCartHandler, modalCartOpen, selectedWine, addWineHandler, cancelHandler} =
+  const {modalCartHandler, modalCartOpen, selectedWine, addHandler, cancelHandler, counter} =
     useModalCart();
-  const [count, setCount] = useState(0);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <CounterContext.Provider value={{count, setCount}}>
-        <NavBar />
-        <Hero />
-        <Wines modalHandler={modalCartHandler} />
-        <Gallery />
-        <Form />
-        <Footer />
-        {modalAgeOpen && <ModalAge onConfirm={modalAgeHandler} />}
-        {modalCartOpen && (
-          <ModalCart
-            addWineHandler={addWineHandler}
-            cancelHandler={cancelHandler}
-            selectedWine={selectedWine}
-          />
-        )}
-      </CounterContext.Provider>
+      <NavBar counter={counter} />
+      <Hero />
+      <Wines modalHandler={modalCartHandler} />
+      <Gallery />
+      <Form />
+      <Footer />
+      {modalAgeOpen && <ModalAge onConfirm={modalAgeHandler} />}
+      {modalCartOpen && (
+        <ModalCart
+          addWineHandler={addHandler}
+          cancelHandler={cancelHandler}
+          selectedWine={selectedWine}
+        />
+      )}
     </ThemeProvider>
   );
 }

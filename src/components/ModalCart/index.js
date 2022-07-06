@@ -3,7 +3,7 @@ import Button from "../Button";
 
 import {StyledModalCart, ButtonsContainer, StyledImg, StyledHeader, StyledInfo} from "./styles";
 
-const ModalCart = ({selectedWine, addWineHandler, cancelHandler}) => {
+const ModalCart = ({selectedWine, addHandler, cancelHandler}) => {
   return (
     <>
       <StyledModalCart>
@@ -17,7 +17,7 @@ const ModalCart = ({selectedWine, addWineHandler, cancelHandler}) => {
           <StyledImg alt="" src={selectedWine.img} />
         </StyledHeader>
         <ButtonsContainer>
-          <Button red onClick={addWineHandler}>
+          <Button red onClick={addHandler}>
             Agregar
           </Button>
           <Button onClick={cancelHandler}>Cancelar</Button>
