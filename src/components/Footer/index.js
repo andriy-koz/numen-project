@@ -25,7 +25,7 @@ const Footer = () => {
           <Icon key={index} alt={item.id} className="lazyload" data-src={item.path} id={item.id} />
         ))}
       </IconsContainer>
-      <a href="#">@ Numen 2022</a>
+      <a href="https://tunegocioalaweb.com">@ TuNegocioALaWeb 2023</a>
     </StyledFooter>
   );
 };
